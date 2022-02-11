@@ -45,10 +45,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         if (!StringUtils.isEmpty(accessToken)) {
             try {
                 String username = JwtTokenUtil.getUsernameFormToken(accessToken);
-                String redisToken = (String) redisUtil.get(username);
-                if(!redisToken.equals(accessToken)){
-                    throw new Exception("token错误，请更新token");
-                }
+
                 if (username != null && !JwtTokenUtil.isTokenExpired(accessToken) && SecurityContextHolder.getContext().getAuthentication() == null) {
 
                     //根据用户名获取用户对象

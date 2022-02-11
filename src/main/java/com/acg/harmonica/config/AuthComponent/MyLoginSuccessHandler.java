@@ -50,7 +50,6 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
         String refreshToken = JwtTokenUtil.generateToken(centreUser,7);
         //返回token
         httpServletResponse.setHeader("Authorization", accessToken);
-        redisUtil.set(centreUser.getUsername(),accessToken);
         //设置返回的data
         Map<String, Object> map = new HashMap<>();
         map.put("accessToken", accessToken);
